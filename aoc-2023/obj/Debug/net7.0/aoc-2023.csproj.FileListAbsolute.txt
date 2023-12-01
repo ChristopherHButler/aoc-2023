@@ -1,0 +1,15 @@
+/Users/christopher/code/projects/aoc-2023/aoc-2023/bin/Debug/net7.0/aoc-2023
+/Users/christopher/code/projects/aoc-2023/aoc-2023/bin/Debug/net7.0/aoc-2023.deps.json
+/Users/christopher/code/projects/aoc-2023/aoc-2023/bin/Debug/net7.0/aoc-2023.runtimeconfig.json
+/Users/christopher/code/projects/aoc-2023/aoc-2023/bin/Debug/net7.0/aoc-2023.dll
+/Users/christopher/code/projects/aoc-2023/aoc-2023/bin/Debug/net7.0/aoc-2023.pdb
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/aoc-2023.csproj.AssemblyReference.cache
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/aoc-2023.GeneratedMSBuildEditorConfig.editorconfig
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/aoc-2023.AssemblyInfoInputs.cache
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/aoc-2023.AssemblyInfo.cs
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/aoc-2023.csproj.CoreCompileInputs.cache
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/aoc-2023.dll
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/refint/aoc-2023.dll
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/aoc-2023.pdb
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/aoc-2023.genruntimeconfig.cache
+/Users/christopher/code/projects/aoc-2023/aoc-2023/obj/Debug/net7.0/ref/aoc-2023.dll

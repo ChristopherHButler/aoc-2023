@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>aoc_2023</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Services\" />
+    <None Remove="Data\" />
+    <None Remove="Puzzles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Data\" />
+    <Folder Include="Puzzles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Data\01_12_2023_part1_test_data.cs">
+      <DependentUpon>01_12_2023_part1_test_data.cshtml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>
