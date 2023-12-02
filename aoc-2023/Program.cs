@@ -13,8 +13,11 @@ class Program
         Console.WriteLine("---------------");
         Console.WriteLine("");
 
-        Dec01.SolvePt1(date, useTestData);
-        Dec01.SolvePt2(date, useTestData);
+        // Dec01.SolvePt1(date, useTestData);
+        // Dec01.SolvePt2(date, useTestData);
+
+        // Dec02.SolvePt1(date, useTestData);
+        Dec02.SolvePt2(date, useTestData);
 
         Console.ReadLine();
     }

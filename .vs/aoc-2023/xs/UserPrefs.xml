@@ -4,8 +4,11 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="aoc-2023" expanded="True">
-            <Node name="aoc-2023" expanded="True">
+          <Node name="aoc-2023">
+            <Node name="aoc-2023">
+              <Node name="Data" expanded="True" />
+              <Node name="Puzzles" expanded="True" />
+              <Node name="Services" expanded="True" />
               <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
