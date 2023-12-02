@@ -17,7 +17,7 @@ public class DataFileReader
     /// <param name="date"></param>
     /// <param name="debugMode"></param>
     /// <param name="runningTests"></param>
-    public DataFileReader(string? filename = null, string? date = null, bool? useTestData = false, int? part = 0, bool debugMode = false, bool runningTests = false)
+    public DataFileReader(string? filename = null, string? date = null, bool? useTestData = false, int? part = 0, bool debugMode = false)
     {
         if (!String.IsNullOrEmpty(filename))
         {
@@ -30,13 +30,13 @@ public class DataFileReader
             // This is tightly coupled to directory structure. I'm cool with that.
             string part1 = "part1-test";
             string part2 = "part2-test";
-            string path = Path.GetFullPath(Path.Combine(cwd, @"../../../Data"));
-            // string testPath = Path.GetFullPath(Path.Combine(cwd, @"../../../../aoc-2022-cli/Data"));
+
             var _now = String.IsNullOrEmpty(date) ? DateTime.Now.ToString("dd-MM-yyyy") : date;
-            // In for a penny in for a pound.
+
             // This assumes you are creating a data file each day with a specific name format: dd-MM-yyyy-data.txt
             // If that is not the case, this will obviously crash and burn but I'm OK with that for this project.
-            var filePath = path; // runningTests ? testPath : path;
+            var filePath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"../../../Data"));
+
             string fullPath = "";
 
             if (useTestData == true)
@@ -48,7 +48,7 @@ public class DataFileReader
             {
                 fullPath = $"{filePath}/{_now}-data.txt";
             }
-            
+
             FullPath = fullPath;
 
             if (debugMode)
