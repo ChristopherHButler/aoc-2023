@@ -475,3 +475,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+/aoc-2023/bin
+/aoc-2023/obj
