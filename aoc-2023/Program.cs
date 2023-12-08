@@ -6,8 +6,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        var date = DateTime.Now.ToString("dd-MM-yyyy"); // "01-12-2023";
-        var useTestData = false;
+        var date = "07-12-2023"; // DateTime.Now.ToString("dd-MM-yyyy"); // "01-12-2023";
+        var useTestData = true;
 
         Console.WriteLine($"AOC: {date}");
         Console.WriteLine("---------------");
@@ -29,7 +29,15 @@ class Program
         // Dec05.SolvePt2(date, useTestData);
 
         // Dec06.SolvePt1(date, useTestData);
-        Dec06.SolvePt2(date, useTestData);
+        // Dec06.SolvePt2(date, useTestData);
+
+        // Dec07.SolvePt1(date, useTestData);
+        Dec07.SolvePt2(date, useTestData);
+
+        // 254464303 too low
+        // 255491737 too low
+        // 256519796 too low
+
 
         Console.ReadLine();
     }
