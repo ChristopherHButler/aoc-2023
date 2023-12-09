@@ -1,16 +1,17 @@
 ﻿<Properties StartupConfiguration="{127E916A-F946-4468-8F42-DE5B40BD55CA}|Default">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="aoc-2023/Program.cs">
+    <Files>
+      <File FileName="aoc-2023/Program.cs" Line="33" Column="46" />
+      <File FileName="aoc-2023/Puzzles/Dec08.cs" Line="26" Column="32" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="aoc-2023" expanded="True">
+          <Node name="aoc-2023">
             <Node name="aoc-2023">
-              <Node name="Data" expanded="True">
-                <Node name="07-12-2023-part2-test-data.txt" selected="True" />
-              </Node>
               <Node name="Puzzles" expanded="True" />
-              <Node name="Services" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -20,7 +21,9 @@
   <MonoDevelop.Ide.ItemProperties.aoc-2023 PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/christopher/code/projects/aoc-2023/aoc-2023/Program.cs" relfile="aoc-2023/Program.cs" line="96" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -61,9 +61,11 @@ public enum HandType
 public class Hand
 {
     public List<CamelCard> Cards = new List<CamelCard>();
+    public List<CamelCard> OriginalCards = new List<CamelCard>();
     public HandType Type { get => GetHandType(); }
     public int HandStrength { get => GetHandStrength(); }
 
+    public string OriginalHand { get; set; } = "";
     public string FullHand { get => Print(); }
     public int Bid { get; set; }
     public int Rank { get; set; } = 0;
@@ -73,6 +75,14 @@ public class Hand
     {
         Cards.AddRange(cards);
         Bid = bid;
+    }
+
+    public Hand(List<CamelCard> cards, List<CamelCard> ogCards, int bid, string originalHand)
+    {
+        Cards.AddRange(cards);
+        OriginalCards.AddRange(ogCards);
+        Bid = bid;
+        OriginalHand = originalHand;
     }
 
     public string Print()
@@ -264,17 +274,19 @@ public class Dec07
         //    Console.WriteLine($"Unordered Hands. Hand: {i} [{Hands[i].FullHand}] type is: {Hands[i].Type}");
         //}
 
-        Hands = OrderHands(hands: Hands);
+        Hands = OrderHands(hands: Hands, part: 1);
 
         int total = ComputeRankAndWinnings(hands: Hands);
 
-        for (int i = 0; i < Hands.Count; i++)
-        {
-            Console.WriteLine($"[{Hands[i].FullHand} - Rank: {Hands[i].Rank}] type is: {Hands[i].Type}]");
-        }
+        //for (int i = 0; i < Hands.Count; i++)
+        //{
+        //    Console.WriteLine($"[{Hands[i].FullHand} - Rank: {Hands[i].Rank}] type is: {Hands[i].Type}]");
+        //}
 
         var outputString = useTestData ? "Part 1 Test [using test data]" : "Part 1 Test [using puzzle data]";
         Console.WriteLine($"{outputString}: {total}");
+
+        if (total == Convert.ToInt32("251927063")) Console.WriteLine("Part 1 Answer is (still) Correct!!!");
 
     }
 
@@ -288,20 +300,23 @@ public class Dec07
 
         CreateHands(lines: dfr.Lines, hands: Hands, part: 2);
 
-        Hands = OrderHands(hands: Hands);
+        Hands = OrderHands(hands: Hands, part: 2);
 
         int total = ComputeRankAndWinnings(hands: Hands);
 
-        for (int i = 0; i < Hands.Count; i++)
-        {
-            Console.WriteLine($"[{Hands[i].FullHand} - Rank: {Hands[i].Rank} - type: {Hands[i].Type}]");
-        }
+        //for (int i = 0; i < Hands.Count; i++)
+        //{
+        //    Console.WriteLine($"{i+1} - [{Hands[i].OriginalHand} - {Hands[i].FullHand} - Rank: {Hands[i].Rank} - type: {Hands[i].Type}]");
+        //}
 
-        var outputString = useTestData ? "Part 2 Test [using test data]" : "Part 2 Test [using puzzle data]";
+        var outputString = useTestData ? "Part 2 [using test data]" : "Part 2 [using puzzle data]";
         Console.WriteLine($"{outputString}: {total}");
+
+        if (total == Convert.ToInt32("255632664")) Console.WriteLine("Answer is Correct!!");
 
     }
 
+    #region Helpers
     private static void CreateHands(List<string> lines, List<Hand> hands, int part = 1)
     {
         for (int i = 0; i < lines.Count; i++)
@@ -336,7 +351,8 @@ public class Dec07
                 }
 
                 var cards = CreateCardsForHand(fullHand, part);
-                hands.Add(new Hand(cards, bid));
+                var ogCards = CreateCardsForHand(parts[0], part);
+                hands.Add(new Hand(cards, ogCards: ogCards, bid, originalHand: parts[0]));
             }
         }
     }
@@ -354,15 +370,16 @@ public class Dec07
         return cards;
     }
 
-    private static List<Hand> OrderHands(List<Hand> hands)
+    private static List<Hand> OrderHands(List<Hand> hands, int part)
     {
         bool isSorted;
         for (int i = 0; i < hands.Count; i++)
         {
             isSorted = true;
+            
             for (int j = 1; j < hands.Count - i; j++)
             {
-                if (CompareHands(hands[j], hands[j - 1]))
+                if (CompareHands(hands[j], hands[j - 1], part))
                 {
                     hands = SwapHands(hands, indexA: j, indexB: j-1);
                     isSorted = false;
@@ -373,21 +390,24 @@ public class Dec07
         return hands;
     }
 
-    private static bool CompareHands(Hand handA, Hand handB)
+    private static bool CompareHands(Hand handA, Hand handB, int part)
     {
         if (handA.HandStrength < handB.HandStrength) return true;
 
-        // If there is a tie between Hand Type, compare card ordinal
+        // If there is a tie between Hand Type, compare card ordinal using original card values
         if (handA.HandStrength == handB.HandStrength)
         {
-            for (int i = 0; i < handA.Cards.Count; i++)
+            var aCards = part == 1 ? handA.Cards : handA.OriginalCards;
+            var bCards = part == 1 ? handB.Cards : handB.OriginalCards;
+
+            for (int i = 0; i < aCards.Count; i++)
             {
                 // cards are the same, skip to the next card
-                if (handA.Cards[i].Ordinal == handB.Cards[i].Ordinal) continue;
+                if (aCards[i].Ordinal == bCards[i].Ordinal) continue;
                 // swap them
-                if (handA.Cards[i].Ordinal < handB.Cards[i].Ordinal) return true;
+                if (aCards[i].Ordinal < bCards[i].Ordinal) return true;
                 // Do not swap but move on.
-                if (handA.Cards[i].Ordinal > handB.Cards[i].Ordinal) return false;
+                if (aCards[i].Ordinal > bCards[i].Ordinal) return false;
             }
         }
         // don't swap
@@ -413,5 +433,6 @@ public class Dec07
         }
         return total;
     }
+    #endregion
 }
 

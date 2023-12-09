@@ -25,8 +25,6 @@ public class DataFileReader
         }
         else
         {
-            // get the current directory
-            string cwd = Directory.GetCurrentDirectory();
             // This is tightly coupled to directory structure. I'm cool with that.
             string part1 = "part1-test";
             string part2 = "part2-test";
