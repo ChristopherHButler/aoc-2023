@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Text;
 using aoc_2023.Services;
 
 namespace aoc_2023.Puzzles;
@@ -18,16 +16,6 @@ public class CamelCard
         Label = label;
     }
 
-    public bool Equals(CamelCard x, CamelCard y)
-    {
-        //Check whether any of the compared objects is null.
-        if (Object.ReferenceEquals(x, null) || Object.ReferenceEquals(y, null))
-            return false;
-
-        //Check whether the products' properties are equal.
-        return x.Label == y.Label;
-    }
-
     private void SetOrdinal(string label, int part = 1)
     {
         if (!AllowedValues.Any(o => o == label))
@@ -38,9 +26,6 @@ public class CamelCard
             Ordinal = 1;
             return;
         }
-
-        //if (label == "J")
-        //    throw new Exception("This should never happen");
 
         Ordinal = label switch
         {
@@ -79,10 +64,6 @@ public class Hand
     public HandType Type { get => GetHandType(); }
     public int HandStrength { get => GetHandStrength(); }
 
-    public HandType AltType { get; set; }
-    public int AltHandStrength { get; set; }
-    public string AltFullName { get; set; } = "";
-
     public string FullHand { get => Print(); }
     public int Bid { get; set; }
     public int Rank { get; set; } = 0;
@@ -92,16 +73,6 @@ public class Hand
     {
         Cards.AddRange(cards);
         Bid = bid;
-    }
-
-    public Hand(List<CamelCard> cards, int bid, string altFullname, HandType altType, int altHandStrength )
-    {
-        Cards.AddRange(cards);
-        Bid = bid;
-
-        AltFullName = altFullname;
-        AltType = altType;
-        AltHandStrength = altHandStrength;
     }
 
     public string Print()
@@ -288,10 +259,10 @@ public class Dec07
 
         CreateHands(lines: dfr.Lines, hands: Hands);
 
-        for (int i = 0; i < Hands.Count; i++)
-        {
-            Console.WriteLine($"Unordered Hands. Hand: {i} [{Hands[i].FullHand}] type is: {Hands[i].Type}");
-        }
+        //for (int i = 0; i < Hands.Count; i++)
+        //{
+        //    Console.WriteLine($"Unordered Hands. Hand: {i} [{Hands[i].FullHand}] type is: {Hands[i].Type}");
+        //}
 
         Hands = OrderHands(hands: Hands);
 
@@ -299,7 +270,7 @@ public class Dec07
 
         for (int i = 0; i < Hands.Count; i++)
         {
-            Console.WriteLine($"Ordered Hands. Hand: {i} [{Hands[i].FullHand} - Rank: {Hands[i].Rank}] type is: {Hands[i].Type}");
+            Console.WriteLine($"[{Hands[i].FullHand} - Rank: {Hands[i].Rank}] type is: {Hands[i].Type}]");
         }
 
         var outputString = useTestData ? "Part 1 Test [using test data]" : "Part 1 Test [using puzzle data]";
@@ -317,13 +288,13 @@ public class Dec07
 
         CreateHands(lines: dfr.Lines, hands: Hands, part: 2);
 
-        Hands = OrderHands2(hands: Hands);
+        Hands = OrderHands(hands: Hands);
 
         int total = ComputeRankAndWinnings(hands: Hands);
 
         for (int i = 0; i < Hands.Count; i++)
         {
-            Console.WriteLine($"Ordered Hands. Hand: {i} [{Hands[i].FullHand} -> {Hands[i].AltFullName} - Rank: {Hands[i].Rank}] type is: {Hands[i].AltType}");
+            Console.WriteLine($"[{Hands[i].FullHand} - Rank: {Hands[i].Rank} - type: {Hands[i].Type}]");
         }
 
         var outputString = useTestData ? "Part 2 Test [using test data]" : "Part 2 Test [using puzzle data]";
@@ -335,55 +306,52 @@ public class Dec07
     {
         for (int i = 0; i < lines.Count; i++)
         {
-            List<CamelCard> cards = new List<CamelCard>();
             var parts = lines[i].Split(' ');
             var bid = Convert.ToInt32(parts[1].Trim());
-            var cardValues = parts[0].ToCharArray();
-
-            for (int j = 0; j < cardValues.Length; j++)
-            {
-                cards.Add(new CamelCard(cardValues[j].ToString(), part));
-            }
 
             if (part == 1)
             {
+                var cards = CreateCardsForHand(fullHand: parts[0], part);
                 hands.Add(new Hand(cards, bid));
             }
 
             else if (part == 2)
             {
-                var altHand = CreateAltHand(cards, bid);
+                string fullHand = "";
 
-                hands.Add(new Hand(cards, bid, altFullname: altHand.FullHand, altType: altHand.Type, altHandStrength: altHand.HandStrength));
+                // JJJJJ
+                if (parts[0].Contains("J") && parts[0].Select(x => x).Distinct().Count() == 1)
+                {
+                    fullHand = "JJJJJ";
+                }
+                else if (parts[0].Contains("J"))
+                {
+                    var chars = parts[0].Replace("J", "");
+                    var targetChar = chars.GroupBy(c => c).OrderByDescending(x => x.Count()).First().Key.ToString();
+                    fullHand = parts[0].Replace("J", targetChar);
+                }
+                else
+                {
+                    fullHand = parts[0];
+                }
+
+                var cards = CreateCardsForHand(fullHand, part);
+                hands.Add(new Hand(cards, bid));
             }
         }
     }
 
-    private static Hand CreateAltHand(List<CamelCard> cards, int bid)
+    private static List<CamelCard> CreateCardsForHand(string fullHand, int part)
     {
-        // create alternate hand for part 2
-        var groups = cards.GroupBy(c => c.Label).ToArray();
-        int max = 0;
-        IGrouping<string, CamelCard> jGrp = groups[0];
-        for (int j = 0; j < groups.Count(); j++)
-        {
-            if (groups[j].Count() >= groups[max].Count() && groups[j].Key != "J") max = j;
-        }
-        StringBuilder sb = new StringBuilder();
-        for (int j = 0; j < cards.Count; j++)
-        {
-            sb.Append(cards[j].Label);
-        }
+        List<CamelCard> cards = new List<CamelCard>();
+        
+        var cardValues = fullHand.ToCharArray();
 
-        string altFullHand = sb.ToString().Replace("J", groups[max].Key);
-
-        List<CamelCard> newCards = new List<CamelCard>();
-        var cardValues = altFullHand.ToCharArray();
         for (int j = 0; j < cardValues.Length; j++)
         {
-            newCards.Add(new CamelCard(cardValues[j].ToString(), part: 2));
+            cards.Add(new CamelCard(cardValues[j].ToString(), part));
         }
-        return new Hand(newCards, bid);
+        return cards;
     }
 
     private static List<Hand> OrderHands(List<Hand> hands)
@@ -409,54 +377,17 @@ public class Dec07
     {
         if (handA.HandStrength < handB.HandStrength) return true;
 
-        // Additional sorting rules
+        // If there is a tie between Hand Type, compare card ordinal
         if (handA.HandStrength == handB.HandStrength)
         {
             for (int i = 0; i < handA.Cards.Count; i++)
             {
-                if (handA.Cards[i].Ordinal < handB.Cards[i].Ordinal) return true;
-                if (handA.Cards[i].Ordinal > handB.Cards[i].Ordinal) return false;
-                // else, compare the next card in the hand
+                // cards are the same, skip to the next card
                 if (handA.Cards[i].Ordinal == handB.Cards[i].Ordinal) continue;
-            }
-        }
-        // don't swap
-        return false;
-    }
-
-    private static List<Hand> OrderHands2(List<Hand> hands)
-    {
-        bool isSorted;
-        for (int i = 0; i < hands.Count; i++)
-        {
-            isSorted = true;
-            for (int j = 1; j < hands.Count; j++)
-            {
-                if (CompareHands2(hands[j], hands[j - 1]))
-                {
-                    hands = SwapHands(hands, indexA: j, indexB: j - 1);
-                    //isSorted = false;
-                }
-            }
-            //if (isSorted) return hands;
-        }
-        return hands;
-    }
-
-    private static bool CompareHands2(Hand handA, Hand handB)
-    {
-        if (handA.AltHandStrength < handB.AltHandStrength) return true;
-
-        // Additional sorting rules
-        if (handA.AltHandStrength == handB.AltHandStrength)
-        {
-            for (int i = 0; i < handA.Cards.Count; i++)
-            {
-                // if (handA.Cards[i].Label == "J") Console.WriteLine($"");
+                // swap them
                 if (handA.Cards[i].Ordinal < handB.Cards[i].Ordinal) return true;
+                // Do not swap but move on.
                 if (handA.Cards[i].Ordinal > handB.Cards[i].Ordinal) return false;
-                // else, compare the next card in the hand
-                if (handA.Cards[i].Ordinal == handB.Cards[i].Ordinal) continue;
             }
         }
         // don't swap
