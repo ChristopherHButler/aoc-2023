@@ -2,14 +2,12 @@
 
 namespace aoc_2023;
 
-
-
 class Program
 {
     static void Main(string[] args)
     {
-        var date = "08-12-2023"; // DateTime.Now.ToString("dd-MM-yyyy"); // "01-12-2023";
-        var useTestData = true;
+        var date = "09-12-2023"; // DateTime.Now.ToString("dd-MM-yyyy"); // "01-12-2023";
+        var useTestData = false;
 
         Console.WriteLine($"AOC: {date}");
         Console.WriteLine("---------------");
@@ -33,10 +31,14 @@ class Program
         // Dec06.SolvePt1(date, useTestData);
         // Dec06.SolvePt2(date, useTestData);
 
-        Dec07.SolvePt1(date, useTestData);
-        Dec07.SolvePt2(date, useTestData);
+        //Dec07.SolvePt1(date, useTestData);
+        //Dec07.SolvePt2(date, useTestData);
 
-        Dec08.SolvePt1(date, useTestData);
+        // Dec08.SolvePt1(date, useTestData);
+        // Dec08.SolvePt2(date, useTestData);
+
+        // Dec09.SolvePt1(date, useTestData);
+        Dec09.SolvePt2(date, useTestData);
 
         Console.ReadLine();
     }

@@ -286,8 +286,6 @@ public class Dec07
         var outputString = useTestData ? "Part 1 Test [using test data]" : "Part 1 Test [using puzzle data]";
         Console.WriteLine($"{outputString}: {total}");
 
-        if (total == Convert.ToInt32("251927063")) Console.WriteLine("Part 1 Answer is (still) Correct!!!");
-
     }
 
     public static void SolvePt2(string? date, bool useTestData = false)
@@ -311,8 +309,6 @@ public class Dec07
 
         var outputString = useTestData ? "Part 2 [using test data]" : "Part 2 [using puzzle data]";
         Console.WriteLine($"{outputString}: {total}");
-
-        if (total == Convert.ToInt32("255632664")) Console.WriteLine("Answer is Correct!!");
 
     }
 
