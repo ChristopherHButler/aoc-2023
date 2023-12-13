@@ -1,20 +1,16 @@
 ﻿<Properties StartupConfiguration="{127E916A-F946-4468-8F42-DE5B40BD55CA}|Default">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="aoc-2023/Program.cs">
-    <Files>
-      <File FileName="aoc-2023/Program.cs" Line="33" Column="46" />
-      <File FileName="aoc-2023/Puzzles/Dec08.cs" Line="26" Column="32" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="aoc-2023">
-            <Node name="aoc-2023">
-              <Node name="Puzzles" expanded="True" />
-              <Node name="Program.cs" selected="True" />
-            </Node>
+          <Node name="aoc-2023" expanded="True">
+            <Node name="aoc-2023" expanded="True" />
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

@@ -324,63 +324,8 @@ public static class Dec03
 
                     }
                 }
-            }
+            }      
 
-            
-            // for (int j = 0; j < numbers[j].Positions.Count; j++)
-            // {
-
-                // var cell = numbers[j];
-
-
-
-                // loop every position 
-                //for (int k = 0; k < cell.Positions.Count; k++)
-                //{
-                //    var pos = cell.Positions[k];
-
-                //    if (pos[0] == upperLeft[0] && pos[1] == upperLeft[1])
-                //    {
-                //        gears[i].Parts.Add(cell);
-                //        break;
-                //    }
-                //    if (pos[0] == top[0] && pos[1] == top[1])
-                //    {
-                //        gears[i].Parts.Add(cell);
-                //        break;
-                //    }
-                //    if (pos[0] == upperRight[0] && pos[1] == upperRight[1])
-                //    {
-                //        gears[i].Parts.Add(cell);
-                //        break;
-                //    }
-                //    if (pos[0] == left[0] && pos[1] == left[1])
-                //    {
-                //        gears[i].Parts.Add(cell);
-                //        break;
-                //    }
-                //    if (pos[0] == right[0] && pos[1] == right[1])
-                //    {
-                //        gears[i].Parts.Add(cell);
-                //        break;
-                //    }
-                //    if (pos[0] == lowerLeft[0] && pos[1] == lowerLeft[1])
-                //    {
-                //        gears[i].Parts.Add(cell);
-                //        break;
-                //    }
-                //    if (pos[0] == bottom[0] && pos[1] == bottom[1])
-                //    {
-                //        gears[i].Parts.Add(cell);
-                //        break;
-                //    }
-                //    if (pos[0] == lowerRight[0] && pos[1] == lowerRight[1])
-                //    {
-                //        gears[i].Parts.Add(cell);
-                //        break;
-                //    }
-                // }
-            // }
         }
         
     }
