@@ -1,16 +1,13 @@
 ﻿using System.Drawing;
 using System.Reflection.Emit;
+using aoc_2023.Entities;
 using aoc_2023.Services;
 
 namespace aoc_2023.Puzzles;
 
 
 
-public class Pos
-{
-    public int X { get; set; }
-    public int Y { get; set; }
-}
+
 
 public class Tile
 {

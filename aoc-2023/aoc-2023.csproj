@@ -12,11 +12,13 @@
     <None Remove="Services\" />
     <None Remove="Data\" />
     <None Remove="Puzzles\" />
+    <None Remove="Entities\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Data\" />
     <Folder Include="Puzzles\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Data\01_12_2023_part1_test_data.cs">

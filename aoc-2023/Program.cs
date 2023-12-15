@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        var date = "10-12-2023"; // DateTime.Now.ToString("dd-MM-yyyy"); // "01-12-2023";
+        var date = "12-12-2023"; // DateTime.Now.ToString("dd-MM-yyyy"); // "01-12-2023";
         var useTestData = false;
 
         Console.WriteLine($"AOC: {date}");
@@ -41,7 +41,11 @@ class Program
         // Dec09.SolvePt2(date, useTestData);
 
         // Dec10.SolvePt1(date, useTestData);
-        Dec10.SolvePt2(date, useTestData);
+        // Dec10.SolvePt2(date, useTestData);
+
+        // Dec11.SolvePt1(date, useTestData);
+        // Dec11.SolvePt2(date, useTestData); // 59ms - nice
+
 
 
         Console.ReadLine();
